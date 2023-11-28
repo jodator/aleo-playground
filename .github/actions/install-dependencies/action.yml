@@ -37,9 +37,10 @@ runs:
         toolchain: stable
         override: true
 
-    - name: Install leo-lang crate
-      shell: bash
-      run: cargo install leo-lang
+    - name: Install leo-lang from crates.io
+      uses: baptiste0928/cargo-install@v2
+      with:
+        crate: leo-lang
 
     - name: Build everything in the monorepo
       shell: bash
