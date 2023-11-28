@@ -39,7 +39,7 @@ runs:
 
     - name: Install leo-lang crate
       shell: bash
-      run: cargo install --path leo-lang
+      run: cargo install leo-lang
 
     - name: Build everything in the monorepo
       shell: bash
