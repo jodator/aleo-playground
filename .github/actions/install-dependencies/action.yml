@@ -31,6 +31,16 @@ runs:
       shell: bash
       run: pnpm install --frozen-lockfile
 
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Install leo-lang crate
+      shell: bash
+      run: cargo install --path leo-lang
+
     - name: Build everything in the monorepo
       shell: bash
       run: pnpm build
