@@ -7,6 +7,15 @@ import './App.css'
 import "@demox-labs/aleo-wallet-adapter-reactui/styles.css"
 import { useAccount, useConnect, useDisconnect, useRecords } from '@puzzlehq/sdk'
 
+const shortenAddress = (address: string) => {
+  const length = 5
+  if (address.length < length * 2) return address
+  return `${address.slice(0, length + 'aleo1'.length)}...${address.slice(
+    address.length - length,
+    address.length,
+  )}`
+}
+
 function App() {
   const { connect } = useConnect()
   const { disconnect } = useDisconnect()
@@ -18,7 +27,7 @@ function App() {
       <div>
         <h2>Puzzle SDK</h2>
         {!account && <button onClick={connect}>Connect</button>}
-        {account && <>{account.address}
+        {account && <>{shortenAddress(account.address)}
           <button onClick={disconnect}>Disconnect</button>
         </>}
         <div>
