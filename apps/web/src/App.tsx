@@ -5,14 +5,13 @@ import { LeoWalletAdapter } from "@demox-labs/aleo-wallet-adapter-leo"
 import { DecryptPermission, WalletAdapterNetwork } from "@demox-labs/aleo-wallet-adapter-base"
 import './App.css'
 import "@demox-labs/aleo-wallet-adapter-reactui/styles.css"
-import { useAccount, useConnect, useDisconnect } from '@puzzlehq/sdk'
+import { useAccount, useConnect, useDisconnect, useRecords } from '@puzzlehq/sdk'
 
 function App() {
-  const { connect, loading } = useConnect()
+  const { connect } = useConnect()
   const { disconnect } = useDisconnect()
   const { account } = useAccount()
-
-  console.log(loading, account)
+  const { records } = useRecords({ address: account?.address })
 
   return (
     <Wallet>
@@ -22,6 +21,14 @@ function App() {
         {account && <>{account.address}
           <button onClick={disconnect}>Disconnect</button>
         </>}
+        <div>
+          Records:
+          <pre style={
+            {
+              textAlign: 'left',
+            }
+          }><code>{JSON.stringify({ records }, null, 2)}</code></pre>
+        </div>
       </div>
       <hr />
       <div>
