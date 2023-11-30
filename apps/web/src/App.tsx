@@ -5,12 +5,30 @@ import { LeoWalletAdapter } from "@demox-labs/aleo-wallet-adapter-leo"
 import { DecryptPermission, WalletAdapterNetwork } from "@demox-labs/aleo-wallet-adapter-base"
 import './App.css'
 import "@demox-labs/aleo-wallet-adapter-reactui/styles.css"
+import { useAccount, useConnect, useDisconnect } from '@puzzlehq/sdk'
 
 function App() {
+  const { connect, loading } = useConnect()
+  const { disconnect } = useDisconnect()
+  const { account } = useAccount()
+
+  console.log(loading, account)
+
   return (
     <Wallet>
-      <WalletMultiButton />
-      <AleoCredits />
+      <div>
+        <h2>Puzzle SDK</h2>
+        {!account && <button onClick={connect}>Connect</button>}
+        {account && <>{account.address}
+          <button onClick={disconnect}>Disconnect</button>
+        </>}
+      </div>
+      <hr />
+      <div>
+        <h2>Leo Wallet SDK</h2>
+        <WalletMultiButton />
+        <AleoCredits />
+      </div>
     </Wallet>
   )
 }
