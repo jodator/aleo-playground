@@ -5,7 +5,8 @@ import { LeoWalletAdapter } from "@demox-labs/aleo-wallet-adapter-leo"
 import { DecryptPermission, WalletAdapterNetwork } from "@demox-labs/aleo-wallet-adapter-base"
 import './App.css'
 import "@demox-labs/aleo-wallet-adapter-reactui/styles.css"
-import { useAccount, useConnect, useDisconnect, useRecords } from '@puzzlehq/sdk'
+import { useAccount, useConnect, useDisconnect } from '@puzzlehq/sdk'
+import { ProgramRecords } from './components/ProgramRecords'
 
 const shortenAddress = (address: string) => {
   const length = 5
@@ -18,30 +19,7 @@ const shortenAddress = (address: string) => {
 
 const programName = 'credits.aleo'
 
-function useProgramRecords(programId: string) {
-  const { account } = useAccount()
-  const { records } = useRecords({
-    address: account?.address,
-    filter: { type: 'unspent', programId },
-  })
-
-  return useMemo(() => records, [JSON.stringify(records)])
-}
-
 const programId = 'iou_token_v001.aleo'
-
-function ProgramRecords(props: { programId: string }) {
-  const myRecords = useProgramRecords(props.programId)
-
-  return <div>
-    Records from program <strong>{props.programId}</strong>:
-    <pre style={
-      {
-        textAlign: 'left',
-      }
-    }><code>{JSON.stringify(myRecords.map(({ data }) => data), null, 2)}</code></pre>
-  </div>
-}
 
 function App() {
   const { connect } = useConnect()
