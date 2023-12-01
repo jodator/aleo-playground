@@ -16,11 +16,37 @@ const shortenAddress = (address: string) => {
   )}`
 }
 
+const programName = 'credits.aleo'
+
+function useProgramRecords(programId: string) {
+  const { account } = useAccount()
+  const { records } = useRecords({
+    address: account?.address,
+    filter: { type: 'unspent', programId },
+  })
+
+  return useMemo(() => records, [JSON.stringify(records)])
+}
+
+const programId = 'iou_token_v001.aleo'
+
+function ProgramRecords(props: { programId: string }) {
+  const myRecords = useProgramRecords(props.programId)
+
+  return <div>
+    Records from program <strong>{props.programId}</strong>:
+    <pre style={
+      {
+        textAlign: 'left',
+      }
+    }><code>{JSON.stringify(myRecords.map(({ data }) => data), null, 2)}</code></pre>
+  </div>
+}
+
 function App() {
   const { connect } = useConnect()
   const { disconnect } = useDisconnect()
   const { account } = useAccount()
-  const { records } = useRecords({ address: account?.address })
 
   return (
     <Wallet>
@@ -30,14 +56,8 @@ function App() {
         {account && <>{shortenAddress(account.address)}
           <button onClick={disconnect}>Disconnect</button>
         </>}
-        <div>
-          Records:
-          <pre style={
-            {
-              textAlign: 'left',
-            }
-          }><code>{JSON.stringify({ records }, null, 2)}</code></pre>
-        </div>
+        <ProgramRecords programId={programId} />
+        <ProgramRecords programId="credits.aleo" />
       </div>
       <hr />
       <div>
@@ -59,7 +79,7 @@ const AleoCredits: FC = () => {
     setRecords(null)
 
     if (publicKey && requestRecords) {
-      requestRecords?.('credits.aleo').then((records) => {
+      requestRecords?.(programName).then((records) => {
         console.log('records?', records)
         setRecords(records)
       }).catch((err) => {
