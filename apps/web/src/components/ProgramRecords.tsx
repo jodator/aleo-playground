@@ -1,7 +1,7 @@
 import { useProgramRecords } from '@/hooks/useProgramRecords.ts'
 
 export function ProgramRecords(props: { programId: string }) {
-  const myRecords = useProgramRecords(props.programId)
+  const { records: myRecords } = useProgramRecords(props.programId)
 
   return <div className="text-slate-400">
     Records from program <strong className="text-white">{props.programId}</strong>:
