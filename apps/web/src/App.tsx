@@ -6,7 +6,7 @@ import { DecryptPermission, WalletAdapterNetwork } from "@demox-labs/aleo-wallet
 import './App.css'
 import "@demox-labs/aleo-wallet-adapter-reactui/styles.css"
 import { useAccount, useConnect, useDisconnect } from '@puzzlehq/sdk'
-import { ProgramRecords } from './components/ProgramRecords'
+import { ProgramRecords } from '@/components/ProgramRecords'
 
 const shortenAddress = (address: string) => {
   const length = 5

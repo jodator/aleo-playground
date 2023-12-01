@@ -1,4 +1,4 @@
-import { useProgramRecords } from '../hooks/useProgramRecords.ts'
+import { useProgramRecords } from '@/hooks/useProgramRecords.ts'
 
 export function ProgramRecords(props: { programId: string }) {
   const myRecords = useProgramRecords(props.programId)
