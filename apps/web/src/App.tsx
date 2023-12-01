@@ -5,38 +5,12 @@ import { LeoWalletAdapter } from "@demox-labs/aleo-wallet-adapter-leo"
 import { DecryptPermission, WalletAdapterNetwork } from "@demox-labs/aleo-wallet-adapter-base"
 import './App.css'
 import "@demox-labs/aleo-wallet-adapter-reactui/styles.css"
-import { useAccount, useConnect, useDisconnect } from '@puzzlehq/sdk'
-import { ProgramRecords } from '@/components/ProgramRecords'
-
-const shortenAddress = (address: string) => {
-  const length = 5
-  if (address.length < length * 2) return address
-  return `${address.slice(0, length + 'aleo1'.length)}...${address.slice(
-    address.length - length,
-    address.length,
-  )}`
-}
-
-const programName = 'credits.aleo'
-
-const programId = 'iou_token_v001.aleo'
+import { PuzzleWalletPlayground } from '@/components/PuzzleWalletPlayground.tsx'
 
 function App() {
-  const { connect } = useConnect()
-  const { disconnect } = useDisconnect()
-  const { account } = useAccount()
-
   return (
     <Wallet>
-      <div>
-        <h2>Puzzle SDK</h2>
-        {!account && <button onClick={connect}>Connect</button>}
-        {account && <>{shortenAddress(account.address)}
-          <button onClick={disconnect}>Disconnect</button>
-        </>}
-        <ProgramRecords programId={programId} />
-        <ProgramRecords programId="credits.aleo" />
-      </div>
+      <PuzzleWalletPlayground />
       <hr />
       <div>
         <h2>Leo Wallet SDK</h2>
@@ -57,7 +31,7 @@ const AleoCredits: FC = () => {
     setRecords(null)
 
     if (publicKey && requestRecords) {
-      requestRecords?.(programName).then((records) => {
+      requestRecords?.('credits.aleo').then((records) => {
         console.log('records?', records)
         setRecords(records)
       }).catch((err) => {
