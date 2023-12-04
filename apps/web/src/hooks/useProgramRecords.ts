@@ -8,8 +8,10 @@ export function useProgramRecords(programId: string) {
     filter: { type: 'unspent', programId },
   })
 
-  const records = data.records ?? []
-  const uniqueRecords = useMemo(() => getUniqueRecords(records), [JSON.stringify(records.map(r => r.ciphertext))])
+  const records = data?.records ?? []
+  const uniqueRecords = useMemo(() => {
+    return getUniqueRecords(records).filter(({ programId: pId }) => pId === programId)
+  }, [JSON.stringify(records.map(r => r.ciphertext))])
 
   return { ...data, records: uniqueRecords }
 }
