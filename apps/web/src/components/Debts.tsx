@@ -5,6 +5,7 @@ import { useCallback } from 'react'
 export function Debts() {
   const { records, loading } = useProgramRecords('iou_token_v001.aleo')
 
+
   const onReveal = useCallback((record: unknown) => {
     console.log('reveal', record)
   }, [])
