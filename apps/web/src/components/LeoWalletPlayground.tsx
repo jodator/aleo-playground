@@ -9,7 +9,6 @@ export function LeoWalletPlayground() {
   return (
     <Wallet>
       <div>
-        <h2 className="text-orange-100 text-2xl font-bold my-2">Leo Wallet SDK</h2>
         <div className="flex mt-4 justify-end">
           <WalletMultiButton />
         </div>

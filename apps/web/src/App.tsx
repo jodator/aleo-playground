@@ -13,14 +13,17 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="container md mx-auto">
+        <h2 className="text-orange-100 text-2xl font-bold my-2">Puzzle Wallet SDK</h2>
+        <hr className="border-t-2 mb-10 border-slate-500" />
+
         <PuzzleWallet />
         <AleoCredits />
         <Debts />
 
-        <hr className="border-t-2 mt-10 border-slate-500" />
         <PuzzleWalletPlayground />
 
-        <hr className="border-t-2 mt-10 border-slate-500" />
+        <h2 className="text-orange-100 text-2xl font-bold my-2">Leo Wallet SDK</h2>
+        <hr className="border-t-2 mb-10 border-slate-500" />
         <LeoWalletPlayground />
       </div>
     </QueryClientProvider>

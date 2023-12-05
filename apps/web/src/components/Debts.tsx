@@ -21,7 +21,7 @@ export function Debts() {
       type: EventType.Execute,
       programId: 'iou_token_v001.aleo',
       functionId: 'reveal',
-      fee: 2,
+      fee: 10,
       inputs: [JSON.stringify(record)],
     })
     if (response.error) {
