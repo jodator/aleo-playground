@@ -5,14 +5,18 @@ import { LeoWalletAdapter } from '@demox-labs/aleo-wallet-adapter-leo'
 import { DecryptPermission, WalletAdapterNetwork } from '@demox-labs/aleo-wallet-adapter-base'
 
 export function LeoWalletPlayground() {
-  return <div>
-    <h2>Leo Wallet SDK</h2>
-    <WalletMultiButton />
-    <AleoCredits />
-  </div>
+  return (
+    <Wallet>
+      <div>
+        <h2 className="text-orange-100 text-2xl font-bold my-2">Leo Wallet SDK</h2>
+        <WalletMultiButton />
+        <AleoRecords />
+      </div>
+    </Wallet>
+  )
 }
 
-const AleoCredits: FC = () => {
+const AleoRecords: FC = () => {
   const { connected, requestRecords, publicKey } = useWallet()
   const [records, setRecords] = useState<Record<string, unknown>[] | null>(null)
 
@@ -29,16 +33,18 @@ const AleoCredits: FC = () => {
     }
   }, [publicKey, requestRecords])
 
-  return <div>
-    <button disabled={!connected} onClick={onClick}>Get Records</button>
+  return (
     <div>
-      {!!records && <pre style={
-        {
-          textAlign: 'left',
-        }
-      }><code>{JSON.stringify({ records }, null, 2)}</code></pre>}
+      <button disabled={!connected} onClick={onClick}>Get Records</button>
+      <div>
+        {!!records && <pre style={
+          {
+            textAlign: 'left',
+          }
+        }><code>{JSON.stringify({ records }, null, 2)}</code></pre>}
+      </div>
     </div>
-  </div>
+  )
 }
 export const Wallet: FC<{ children: ReactNode }> = ({ children }) => {
   const wallets = useMemo(

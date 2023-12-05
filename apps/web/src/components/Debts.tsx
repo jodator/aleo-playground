@@ -14,7 +14,7 @@ export function Debts() {
   return (
     <div className="flex flex-row gap-4">
       {records.map(({ data }) => (
-        <div className="border-2 p-8 border-orange-600 rounded basis-1/4 grow-0 shrink overflow-ellipsis text-orange-900 bg-orange-200">
+        <div key={data._nonce} className="border-2 p-8 border-orange-600 rounded basis-1/4 grow-0 shrink overflow-ellipsis text-orange-900 bg-orange-200">
           amount: {data.amount}<br />
           issuer: {shortenAddress(data.issuer)}
           <br />
