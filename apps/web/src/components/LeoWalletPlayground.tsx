@@ -1,9 +1,9 @@
 import { WalletModalProvider, WalletMultiButton } from '@demox-labs/aleo-wallet-adapter-reactui'
-import { FC, ReactNode, useCallback, useMemo, useState } from 'react'
-import { useWallet, WalletProvider } from '@demox-labs/aleo-wallet-adapter-react'
+import { FC, ReactNode, useMemo } from 'react'
+import { WalletProvider } from '@demox-labs/aleo-wallet-adapter-react'
 import { LeoWalletAdapter } from '@demox-labs/aleo-wallet-adapter-leo'
 import { DecryptPermission, WalletAdapterNetwork } from '@demox-labs/aleo-wallet-adapter-base'
-import { Code } from '@/components/Code.tsx'
+import { AleoRecords } from '@/components/AleoRecords.tsx'
 
 export function LeoWalletPlayground() {
   return (
@@ -13,38 +13,12 @@ export function LeoWalletPlayground() {
         <div className="flex mt-4 justify-end">
           <WalletMultiButton />
         </div>
-        <AleoRecords />
+        <AleoRecords programId="iou_token_v001.aleo" />
       </div>
     </Wallet>
   )
 }
 
-const AleoRecords: FC = () => {
-  const { connected, requestRecords, publicKey } = useWallet()
-  const [records, setRecords] = useState<Record<string, unknown>[] | null>(null)
-
-  const onClick = useCallback(() => {
-    setRecords(null)
-
-    if (publicKey && requestRecords) {
-      requestRecords?.('credits.aleo').then((records) => {
-        console.log('records?', records)
-        setRecords(records)
-      }).catch((err) => {
-        console.log('error?', err)
-      })
-    }
-  }, [publicKey, requestRecords])
-
-  return (
-    <div>
-      <button className="bg-blue-400 p-2 rounded" disabled={!connected} onClick={onClick}>Get Records</button>
-      <div>
-        {!!records && <Code jsonData={records} />}
-      </div>
-    </div>
-  )
-}
 export const Wallet: FC<{ children: ReactNode }> = ({ children }) => {
   const wallets = useMemo(
     () => [
