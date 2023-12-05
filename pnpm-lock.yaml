@@ -38,6 +38,9 @@ importers:
       '@puzzlehq/sdk':
         specifier: ^0.1.35
         version: 0.1.35(@types/react@18.2.39)(react-dom@18.2.0)
+      '@puzzlehq/types':
+        specifier: ^1.0.8
+        version: 1.0.8
       '@tanstack/react-query':
         specifier: ^5.12.2
         version: 5.12.2(react@18.2.0)
@@ -913,6 +916,12 @@ packages:
       - react-native
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /@puzzlehq/types@1.0.8:
+    resolution: {integrity: sha512-rYLhMBU6NAqWmw9mApWN2f7jwswDgAZ/YV5MfEx7vPmulqm2+3gkFJoRXT+AfB/NhfIcRPNtp3Ct0x+Phwk36Q==}
+    dependencies:
+      zod: 3.21.1
     dev: false
 
   /@rollup/rollup-android-arm-eabi@4.5.2:
@@ -3898,6 +3907,10 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  /zod@3.21.1:
+    resolution: {integrity: sha512-+dTu2m6gmCbO9Ahm4ZBDapx2O6ZY9QSPXst2WXjcznPMwf2YNpn3RevLx4KkZp1OPW/ouFcoBtBzFz/LeY69oA==}
+    dev: false
 
   /zustand@4.4.7(@types/react@18.2.39)(immer@9.0.21)(react@18.2.0):
     resolution: {integrity: sha512-QFJWJMdlETcI69paJwhSMJz7PPWjVP8Sjhclxmxmxv/RYI7ZOvR5BHX+ktH0we9gTWQMxcne8q1OY8xxz604gw==}
