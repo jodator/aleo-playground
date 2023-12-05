@@ -9,7 +9,9 @@ export function LeoWalletPlayground() {
     <Wallet>
       <div>
         <h2 className="text-orange-100 text-2xl font-bold my-2">Leo Wallet SDK</h2>
-        <WalletMultiButton />
+        <div className="flex mt-4 justify-end">
+          <WalletMultiButton />
+        </div>
         <AleoRecords />
       </div>
     </Wallet>
@@ -35,7 +37,7 @@ const AleoRecords: FC = () => {
 
   return (
     <div>
-      <button disabled={!connected} onClick={onClick}>Get Records</button>
+      <button className="bg-blue-400 p-2 rounded" disabled={!connected} onClick={onClick}>Get Records</button>
       <div>
         {!!records && <pre style={
           {
