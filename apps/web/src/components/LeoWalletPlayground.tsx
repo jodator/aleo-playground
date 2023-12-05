@@ -3,6 +3,7 @@ import { FC, ReactNode, useCallback, useMemo, useState } from 'react'
 import { useWallet, WalletProvider } from '@demox-labs/aleo-wallet-adapter-react'
 import { LeoWalletAdapter } from '@demox-labs/aleo-wallet-adapter-leo'
 import { DecryptPermission, WalletAdapterNetwork } from '@demox-labs/aleo-wallet-adapter-base'
+import { Code } from '@/components/Code.tsx'
 
 export function LeoWalletPlayground() {
   return (
@@ -39,11 +40,7 @@ const AleoRecords: FC = () => {
     <div>
       <button className="bg-blue-400 p-2 rounded" disabled={!connected} onClick={onClick}>Get Records</button>
       <div>
-        {!!records && <pre style={
-          {
-            textAlign: 'left',
-          }
-        }><code>{JSON.stringify({ records }, null, 2)}</code></pre>}
+        {!!records && <Code jsonData={records} />}
       </div>
     </div>
   )
