@@ -4,6 +4,7 @@ import { WalletProvider } from '@demox-labs/aleo-wallet-adapter-react'
 import { LeoWalletAdapter } from '@demox-labs/aleo-wallet-adapter-leo'
 import { DecryptPermission, WalletAdapterNetwork } from '@demox-labs/aleo-wallet-adapter-base'
 import { AleoRecords } from '@/components/LeoWallet/AleoRecords.tsx'
+import { Debts } from '@/components/LeoWallet/Debts.tsx'
 
 export function LeoWalletPlayground() {
   return (
@@ -12,8 +13,8 @@ export function LeoWalletPlayground() {
         <div className="flex mt-4 justify-end">
           <WalletMultiButton />
         </div>
+        <Debts />
         <AleoRecords programId="iou_token_v001.aleo" />
-        <AleoRecords programId="credits.aleo" />
       </div>
     </Wallet>
   )
