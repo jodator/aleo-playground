@@ -33,6 +33,7 @@ export const Wallet: FC<{ children: ReactNode }> = ({ children }) => {
       wallets={wallets}
       decryptPermission={DecryptPermission.UponRequest}
       network={WalletAdapterNetwork.Testnet}
+      programs={['iou_token_v001.aleo']}
       autoConnect
     >
       <WalletModalProvider>
