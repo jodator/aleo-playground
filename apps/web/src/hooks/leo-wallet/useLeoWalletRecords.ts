@@ -5,16 +5,12 @@ export interface ProgramRecord<T> {
   "id": string,
   "owner": string,
   "program_id": string,
-  "spent": false,
+  "spent": boolean,
   "recordName": string,
   "data": T,
-  "ciphertext": string,
-  "plaintext": string,
-  "serialNumber": string,
-  "transactionIdCreated": string
 }
 
-export function useLeoWalletRecords<T>(programName: string) {
+export function useLeoWalletRecords<T>(programName: string, options: { includeSpent?: boolean } = { includeSpent: false }) {
   const { connected, requestRecords, publicKey } = useWallet()
   const [records, setRecords] = useState<ProgramRecord<T>[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -24,12 +20,16 @@ export function useLeoWalletRecords<T>(programName: string) {
     setIsLoading(true)
 
     if (connected && publicKey && requestRecords) {
-      requestRecords?.(programName).then((records) => {
+      requestRecords?.(programName).then((records: ProgramRecord<T>[]) => {
+        if (!options.includeSpent) {
+          records = records.filter(record => !record.spent)
+        }
+
         setRecords(records)
         setIsLoading(false)
       })
     }
-  }, [connected, programName, publicKey, requestRecords])
+  }, [connected, options.includeSpent, programName, publicKey, requestRecords])
 
   return { records, isLoading }
 }

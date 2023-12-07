@@ -5,9 +5,25 @@ import { useWallet } from '@demox-labs/aleo-wallet-adapter-react'
 import { Transaction, WalletAdapterNetwork } from '@demox-labs/aleo-wallet-adapter-base'
 
 interface IOUTicket {
-  amount: number
+  amount: string
   issuer: string
-  revealed: boolean
+  revealed: string
+}
+
+class LeoBoolean {
+  public value: boolean
+  public visibility: 'public' | 'private'
+
+  constructor(value: boolean, visibility: "public" | "private") {
+    this.value = value
+    this.visibility = visibility
+  }
+
+  static fromString(str: string): LeoBoolean {
+    const [value, visibility] = str.split('.')
+
+    return new LeoBoolean(value === 'true', visibility as 'public' | 'private')
+  }
 }
 
 export function Debts() {
@@ -46,7 +62,8 @@ export function Debts() {
           issuer: {shortenAddress(record.data.issuer)}<br />
           revealed: {record.data.revealed}<br />
           <br />
-          <button className="rounded bg-blue-600 p-2 text-black" onClick={() => onReveal(record)}>Reveal</button>
+          {!LeoBoolean.fromString(record.data.revealed).value &&
+            <button className="rounded bg-blue-600 p-2 text-black" onClick={() => onReveal(record)}>Reveal</button>}
         </div>
       ))}
     </div>

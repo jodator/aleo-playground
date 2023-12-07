@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const AleoRecords = ({ programId }: Props) => {
-  const records = useLeoWalletRecords(programId)
+  const records = useLeoWalletRecords(programId, { includeSpent: true })
 
   return (
     <div className="text-slate-400">
