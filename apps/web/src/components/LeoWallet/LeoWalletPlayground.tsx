@@ -3,7 +3,7 @@ import { FC, ReactNode, useMemo } from 'react'
 import { WalletProvider } from '@demox-labs/aleo-wallet-adapter-react'
 import { LeoWalletAdapter } from '@demox-labs/aleo-wallet-adapter-leo'
 import { DecryptPermission, WalletAdapterNetwork } from '@demox-labs/aleo-wallet-adapter-base'
-import { AleoRecords } from '@/components/AleoRecords.tsx'
+import { AleoRecords } from '@/components/LeoWallet/AleoRecords.tsx'
 
 export function LeoWalletPlayground() {
   return (

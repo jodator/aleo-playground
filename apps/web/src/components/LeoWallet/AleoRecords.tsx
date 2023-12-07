@@ -1,5 +1,5 @@
 import { Code } from '@/components/Code.tsx'
-import { useLeoWalletRecords } from '@/hooks/useLeoWalletRecords.tsx'
+import { useLeoWalletRecords } from '@/hooks/leo-wallet/useLeoWalletRecords.ts'
 
 interface Props {
   programId: string

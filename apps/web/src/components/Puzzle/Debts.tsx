@@ -1,4 +1,4 @@
-import { useProgramRecords } from '@/hooks/useProgramRecords.ts'
+import { useProgramRecords } from '@/hooks/puzzle/useProgramRecords.ts'
 import { requestCreateEvent, shortenAddress } from '@puzzlehq/sdk'
 import { EventType } from '@puzzlehq/types'
 import { useCallback } from 'react'

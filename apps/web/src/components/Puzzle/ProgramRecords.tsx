@@ -1,4 +1,4 @@
-import { useProgramRecords } from '@/hooks/useProgramRecords.ts'
+import { useProgramRecords } from '@/hooks/puzzle/useProgramRecords.ts'
 import { Code } from '@/components/Code.tsx'
 
 interface Props {

@@ -1,10 +1,10 @@
 import "@demox-labs/aleo-wallet-adapter-reactui/styles.css"
 
-import { PuzzleWalletPlayground } from '@/components/PuzzleWalletPlayground.tsx'
-import { LeoWalletPlayground } from '@/components/LeoWalletPlayground.tsx'
-import { PuzzleWallet } from '@/components/PuzzleWallet.tsx'
-import { AleoCredits } from '@/components/AleoCredits.tsx'
-import { Debts } from '@/components/Debts.tsx'
+import { PuzzleWalletPlayground } from '@/components/Puzzle/PuzzleWalletPlayground.tsx'
+import { LeoWalletPlayground } from '@/components/LeoWallet/LeoWalletPlayground.tsx'
+import { PuzzleWallet } from '@/components/Puzzle/PuzzleWallet.tsx'
+import { AleoCredits } from '@/components/Puzzle/AleoCredits.tsx'
+import { Debts } from '@/components/Puzzle/Debts.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()

@@ -1,4 +1,4 @@
-import { ProgramRecords } from '@/components/ProgramRecords.tsx'
+import { ProgramRecords } from '@/components/Puzzle/ProgramRecords.tsx'
 
 export function PuzzleWalletPlayground() {
   return <div>
