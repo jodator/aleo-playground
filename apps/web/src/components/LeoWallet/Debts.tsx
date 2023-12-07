@@ -56,13 +56,13 @@ export function Debts() {
     <div className="flex flex-row gap-4">
       {records.map((record) => (
         <div key={record.id}
-             className="border-2 p-8 border-blue-600 rounded basis-1/4 grow-0 shrink overflow-ellipsis text-blue-900 bg-blue-200">
+             className="border-2 p-4 border-blue-600 rounded basis-1/4 grow-0 shrink overflow-ellipsis text-blue-900 bg-blue-200">
           amount: {record.data.amount}<br />
           issuer: {shortenAddress(record.data.issuer)}<br />
           revealed: {record.data.revealed}<br />
           <br />
           {!LeoBoolean.fromString(record.data.revealed).value &&
-            <button className="rounded bg-blue-600 p-2 text-black" onClick={() => onReveal(record)}>Reveal</button>}
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onClick={() => onReveal(record)}>Reveal</button>}
         </div>
       ))}
     </div>

@@ -39,7 +39,7 @@ export function MyDebt() {
   const { publicKey } = useWallet()
   const { data } = usePublicMapping('iou_token_v001.aleo', 'publicDebt', publicKey)
 
-  return <div className="text-slate-500">
-    My public debt: <strong className="text-white">{data ? LeoNumber.fromString(data).value : 0}</strong>
+  return <div className="text-slate-500 flex align-middle">
+    <span>My public debt: <strong className="text-white">{data ? LeoNumber.fromString(data).value : 0}</strong></span>
   </div>
 }
