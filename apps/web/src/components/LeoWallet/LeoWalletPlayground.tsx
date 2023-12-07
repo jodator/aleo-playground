@@ -32,7 +32,7 @@ function CreateDebt() {
     await requestTransaction(aleoTransaction)
   }, [publicKey, requestTransaction])
 
-  return <button disabled={!publicKey} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+  return <button disabled={!publicKey} className="bg-blue-500 hover:bg-blue-700 disabled:bg-neutral-700 text-white font-bold py-1 px-2 rounded"
                  onClick={onClick}>IOU</button>
 }
 
