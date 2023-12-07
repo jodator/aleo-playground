@@ -9,7 +9,7 @@ export function Debts() {
   const { data } = useQuery({
     queryKey: ['publicDebt'],
     queryFn: async () => {
-      const response = await fetch('https://api.explorer.aleo.org/v1/testnet3/program/iou_token_v001.aleo/mapping/publicDebt/aleo1q6qstg8q8shwqf5m6q5fcenuwsdqsvp4hhsgfnx5chzjm3secyzqt9mxm8', { mode: 'no-cors' })
+      const response = await fetch('https://api.explorer.aleo.org/v1/testnet3/program/iou_token_v001.aleo/mapping/publicDebt/aleo10jukdehyxg66gcey8lklu9t0edfmh6m4jtxyq2rmut84nsxqtq9qjzujqq', { mode: 'no-cors' })
       return response.json()
     },
   })

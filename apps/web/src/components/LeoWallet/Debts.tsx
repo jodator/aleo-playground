@@ -45,8 +45,7 @@ export function Debts() {
     )
 
     const response = await requestTransaction(aleoTransaction)
-    console.log(response)
-    alert(response)
+    console.log('TX response:', response)
   }, [publicKey, requestTransaction])
 
   if (isLoading) return <div>Loading...</div>
