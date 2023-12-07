@@ -13,6 +13,7 @@ export function LeoWalletPlayground() {
           <WalletMultiButton />
         </div>
         <AleoRecords programId="iou_token_v001.aleo" />
+        <AleoRecords programId="credits.aleo" />
       </div>
     </Wallet>
   )
@@ -31,9 +32,9 @@ export const Wallet: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <WalletProvider
       wallets={wallets}
-      decryptPermission={DecryptPermission.UponRequest}
+      decryptPermission={DecryptPermission.OnChainHistory}
       network={WalletAdapterNetwork.Testnet}
-      programs={['iou_token_v001.aleo']}
+      programs={['iou_token_v001.aleo', 'credits.aleo']}
       autoConnect
     >
       <WalletModalProvider>

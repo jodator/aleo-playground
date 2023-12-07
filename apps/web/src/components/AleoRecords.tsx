@@ -7,8 +7,9 @@ interface Props {
 }
 
 export const AleoRecords = ({ programId }: Props) => {
-  const { connected, requestRecords, publicKey } = useWallet()
+  const { connected, requestRecords, publicKey, requestRecordPlaintexts  } = useWallet()
   const [records, setRecords] = useState<Record<string, unknown>[] | null>(null)
+  const [plainRecords, setPlainRecords] = useState<Record<string, unknown>[] | null>(null)
 
   const onClick = useCallback(() => {
     setRecords(null)
@@ -17,6 +18,12 @@ export const AleoRecords = ({ programId }: Props) => {
       requestRecords?.(programId).then((records) => {
         console.log('records?', records)
         setRecords(records)
+      }).catch((err) => {
+        console.log('error?', err)
+      })
+      requestRecordPlaintexts?.(programId).then((records) => {
+        console.log('Plain records?', records)
+        setPlainRecords(records)
       }).catch((err) => {
         console.log('error?', err)
       })
@@ -32,6 +39,12 @@ export const AleoRecords = ({ programId }: Props) => {
 
       <div>
         {!!records && <Code jsonData={records} />}
+      </div>
+
+      Plain Records from program <strong className="text-white">{programId}</strong>:
+
+      <div>
+        {!!plainRecords && <Code jsonData={plainRecords} />}
       </div>
     </div>
   )
