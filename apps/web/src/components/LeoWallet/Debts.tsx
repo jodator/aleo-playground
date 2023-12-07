@@ -1,6 +1,8 @@
 import { useCallback } from 'react'
 import { ProgramRecord, useLeoWalletRecords } from '@/hooks/leo-wallet/useLeoWalletRecords.ts'
 import { shortenAddress } from '@/utils/shortenAddress.tsx'
+import { useWallet } from '@demox-labs/aleo-wallet-adapter-react'
+import { Transaction, WalletAdapterNetwork } from '@demox-labs/aleo-wallet-adapter-base'
 
 interface IOUTicket {
   amount: number
@@ -10,10 +12,26 @@ interface IOUTicket {
 
 export function Debts() {
   const { records, isLoading } = useLeoWalletRecords<IOUTicket>('iou_token_v001.aleo')
+  const { publicKey, requestTransaction } = useWallet()
 
   const onReveal = useCallback(async (record: ProgramRecord<IOUTicket>) => {
-    console.log(record)
-  }, [])
+    if (!publicKey || !requestTransaction) return
+
+    const inputs = [record]
+    const fee = 4_000_000
+    const aleoTransaction = Transaction.createTransaction(
+      publicKey,
+      WalletAdapterNetwork.Testnet,
+      'iou_token_v001.aleo',
+      'reveal',
+      inputs,
+      fee,
+    )
+
+    const response = await requestTransaction(aleoTransaction)
+    console.log(response)
+    alert(response)
+  }, [publicKey, requestTransaction])
 
   if (isLoading) return <div>Loading...</div>
 

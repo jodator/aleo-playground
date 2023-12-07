@@ -15,7 +15,7 @@ export interface ProgramRecord<T> {
 }
 
 export function useLeoWalletRecords<T>(programName: string) {
-  const { connected, requestRecordPlaintexts, publicKey } = useWallet()
+  const { connected, requestRecords, publicKey } = useWallet()
   const [records, setRecords] = useState<ProgramRecord<T>[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -23,13 +23,13 @@ export function useLeoWalletRecords<T>(programName: string) {
     setRecords(null)
     setIsLoading(true)
 
-    if (connected && publicKey && requestRecordPlaintexts) {
-      requestRecordPlaintexts?.(programName).then((records) => {
+    if (connected && publicKey && requestRecords) {
+      requestRecords?.(programName).then((records) => {
         setRecords(records)
         setIsLoading(false)
       })
     }
-  }, [connected, programName, publicKey, requestRecordPlaintexts])
+  }, [connected, programName, publicKey, requestRecords])
 
   return { records, isLoading }
 }
