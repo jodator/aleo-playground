@@ -53,18 +53,26 @@ export function Debts() {
   if (!records) return <div>No records</div>
 
   return (
-    <div className="flex flex-row gap-4">
-      {records.map((record) => (
-        <div key={record.id}
-             className="border-2 p-4 border-blue-600 rounded basis-1/4 grow-0 shrink overflow-ellipsis text-blue-900 bg-blue-200">
-          amount: {record.data.amount}<br />
-          issuer: {shortenAddress(record.data.issuer)}<br />
-          revealed: {record.data.revealed}<br />
-          <br />
-          {!LeoBoolean.fromString(record.data.revealed).value &&
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onClick={() => onReveal(record)}>Reveal</button>}
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="flex flex-row gap-4">
+        <span className="text-slate-400">
+          My total owed: {records.reduce((acc, record) => acc + parseInt(record.data.amount), 0)}
+        </span>
+      </div>
+      <div className="flex flex-row gap-4">
+        {records.map((record) => (
+          <div key={record.id}
+               className="border-2 p-4 border-blue-600 rounded basis-1/4 grow-0 shrink overflow-ellipsis text-blue-900 bg-blue-200">
+            amount: {record.data.amount}<br />
+            issuer: {shortenAddress(record.data.issuer)}<br />
+            revealed: {record.data.revealed}<br />
+            <br />
+            {!LeoBoolean.fromString(record.data.revealed).value &&
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                      onClick={() => onReveal(record)}>Reveal</button>}
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
