@@ -1,16 +1,16 @@
 // The 'iou_token_vXXX' program.
-program iou_token_v001.aleo {
-    record ticket {
+program iou_token_v002.aleo {
+    record Ticket {
         owner: address,
         issuer: address,
         amount: u32,
         revealed: bool,
     }
 
-    mapping publicDebt: address => u32;
+    mapping public_debt: address => u32;
 
-    transition create(private owner: address, private amount: u32) -> ticket {
-        return ticket {
+    transition create(private owner: address, private amount: u32) -> Ticket {
+        return Ticket {
             owner,
             issuer: self.caller,
             amount,
@@ -18,20 +18,20 @@ program iou_token_v001.aleo {
         };
     }
 
-    transition reveal(private a_ticket: ticket) -> ticket {
-        assert(!a_ticket.revealed);
-        let revealedTicket: ticket = ticket {
-            owner: a_ticket.owner,
-            issuer: a_ticket.issuer,
-            amount: a_ticket.amount,
+    transition reveal(private ticket: Ticket) -> Ticket {
+        assert(!ticket.revealed);
+        let revealed_ticket: Ticket = Ticket {
+            owner: ticket.owner,
+            issuer: ticket.issuer,
+            amount: ticket.amount,
             revealed: true,
         };
-        return revealedTicket then finalize(a_ticket.amount, a_ticket.issuer);
+        return revealed_ticket then finalize(ticket.amount, ticket.issuer);
     }
 
     finalize reveal(amount: u32, issuer: address) {
-        let currentDebt: u32 = Mapping::get_or_use(publicDebt, issuer, 0u32);
-        let newDebt: u32 = currentDebt + amount;
-        Mapping::set(publicDebt, issuer, newDebt);
+        let current: u32 = Mapping::get_or_use(public_debt, issuer, 0u32);
+        let updated: u32 = current + amount;
+        Mapping::set(public_debt, issuer, updated);
     }
 }

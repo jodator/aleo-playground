@@ -1,6 +1,6 @@
 {
-    "program": "iou_token_v001.aleo",
-    "version": "0.0.1",
+    "program": "iou_token_v002.aleo",
+    "version": "0.0.2",
     "description": "",
     "license": "MIT"
 }
